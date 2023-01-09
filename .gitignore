@@ -21,9 +21,10 @@ Thumbs.db
 **/.vscode-test/
 *.code-workspace
 
-# npm, node
+# npm, node, yarn
 **/node_modules/
 package-lock.json
+yarn.lock
 npm-debug.log*
 yarn-error.log*
 **/.npm/
