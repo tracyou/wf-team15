@@ -19,22 +19,13 @@ export default {
     HeaderSb,
     NavBarSb,
   },
-  // provide: {
-  //   cabinsService: new CabinsAdaptor(CONFIG.BACKEND_URL + "/cabins"),
-  //
-  //   sessionService: shallowReactive(
-  //       new SessionSbService(CONFIG.BACKEND_URL + "/authentication", CONFIG.JWT_STORAGE_ITEM)),
-  //
-  // }
-  provide() {
-    this.sessionService = shallowReactive(
-        new SessionSbService(CONFIG.BACKEND_URL + "/authentication", CONFIG.JWT_STORAGE_ITEM));
-    this.theFetchInterceptor = new FetchInterceptor(this.sessionService, this.$router);
-
+  provide(){
+    this.theSessionService = shallowReactive(
+        new SessionSbService(CONFIG.BACKEND_URL + "/authentication",CONFIG.JWT_STORAGE_ITEM));
+    this.theFetchInterceptor = new FetchInterceptor(this.theSessionService,this.$router);
     return {
-      cabinsService: new CabinsAdaptor(CONFIG.BACKEND_URL + "/cabins"),
-      sessionService: this.sessionService,
-      theFetchInterceptor: this.theFetchInterceptor
+      cabinsService: new CabinsAdaptor(CONFIG.BACKEND_URL+"/cabins"),
+      sessionService:this.theSessionService
     }
   },
   unmounted() {
