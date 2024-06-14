@@ -10,6 +10,7 @@ import UnknownRoute from "@/components/UnknownRoute";
 import Overview37 from "@/cabins/Overview37";
 import Detail37 from "@/cabins/Detail37";
 import signIn from "@/components/SignIn.vue";
+import RequestError from "@/components/RequestError";
 
 const routes = [
     {path: '/:pathMatch', component: UnknownRoute},
@@ -38,8 +39,10 @@ const routes = [
     {
         path: '/cabins/overview37', name: 'Overview37', component: Overview37,
         children: [{path: ':id', component: Detail37}]
+    },
+    {
+        path: '/error', name: 'ERROR', component: RequestError, props: true
     }
-
 
 ]
 const router = createRouter({

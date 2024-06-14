@@ -49,14 +49,17 @@ export class FetchInterceptor {
 
     async handleErrorInResponse(response) {
         if (response.status === 401) {
-            console.log(response);
-            this.router.push("/cabins/SignIn");
+            alert("Please log in to view the content!")
+            this.router.push('/sign-out');
         } else if (response.status === 406) {
+            // eslint-disable-next-line no-debugger
+            debugger;
+            console.log(response.status);
             let errorData = await response.json();
             let errorMessage = `Request-url = ${response.request.url}`
                 + `<br>Response status code = ${response.status}`
                 + `<br>Error Message = ${errorData.error}: ${errorData.message}`
-            this.router.push({ name: 'RequestError', params: { message: errorMessage}});
+            this.router.push({ name: 'ERROR', params: { message: errorMessage}});
         } else {
             console.log(response)
         }

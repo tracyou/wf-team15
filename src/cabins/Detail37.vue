@@ -98,7 +98,7 @@ export default {
     },
     async deleteCabin() {
       this.$emit('unselect-cabin', this.selectedCabin);
-      await this.cabinsService.deleteCabin(this.selectedCabin);
+      await this.cabinsService.asyncDeleteById(this.selectedCabin.id);
     }
   },
   watch: {

@@ -2,7 +2,7 @@
   <div class="container">
     <div id="cabinDetails" class="container horizontal-scrollable"><h3>All Cabins Detail (managed by component):</h3>
       <table id="cabinCards">
-        <div class="card-block card-1" :class="{'selectedCabinColor': selectCabin.id === cabin.id}" v-for="cabin in cabins"
+        <div class="card-block card-1" :class="{'selectedCabinColor': selectCabin === cabin}" v-for="cabin in cabins"
              :key="cabin" @click="pushRoutedCabin(cabin) ">
           <div class="cabin-div" v-bind:id="cabin.id">
             <div><img alt="cabin-image" :src="cabin.image"></div>
@@ -35,6 +35,9 @@ export default {
   async created() {
     this.cabins = await this.cabinsService.asyncFindAll();
     this.selectCabin = await this.findSelectedFromRouteParam();
+  },
+  async updated() {
+    this.cabins = await this.cabinsService.asyncFindAll();
   },
   data() {
     return {
@@ -72,6 +75,7 @@ export default {
       }
     },
     async findSelectedFromRouteParam(){
+      console.log(this.$route)
       if (this.$route.params.id == null) {
         this.$router.push('/cabins/overview37');
       } else {
